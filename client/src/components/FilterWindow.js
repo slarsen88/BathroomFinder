@@ -1,11 +1,11 @@
 import React from 'react'
 import Checkbox from "./Checkbox.js"
 
-
 const items = [
-    'one',
-    'two',
-    'three',
+    'Male',
+    'Female',
+    'Family',
+    'Other',
 ];
 
 class FilterWindow extends React.Component
@@ -13,19 +13,13 @@ class FilterWindow extends React.Component
     constructor(props)
     {
         super(props);
-        this.state = {
-            list: [
-                "Go to the store",
-                "Wash the dishes",
-                "Learn some code",
-            ]
-        }
     }
 
     componentWillMount = () => {
         this.selectedCheckboxes = new Set();
       }
-    
+
+      // Toggle check boxes.
       toggleCheckbox = label => {
         if (this.selectedCheckboxes.has(label)) {
           this.selectedCheckboxes.delete(label);
@@ -33,14 +27,14 @@ class FilterWindow extends React.Component
           this.selectedCheckboxes.add(label);
         }
       }
-    
-      handleFormSubmit = formSubmitEvent => {
-        formSubmitEvent.preventDefault();
-        for (const checkbox of this.selectedCheckboxes) {
-          console.log(checkbox, 'is selected.');
-        }
-      }
-
+      
+    //   handleFormSubmit = formSubmitEvent => {
+    //     formSubmitEvent.preventDefault();
+    //     for (const checkbox of this.selectedCheckboxes) {
+    //       console.log(checkbox, 'is selected.');
+    //     }
+    //   }
+      
       createCheckbox = label => (
         <Checkbox
             label={label}
@@ -53,45 +47,78 @@ class FilterWindow extends React.Component
         items.map(this.createCheckbox)
       )
 
+      state = {
+        selectedValue: "sortByRating"
+      };
+    
+      handleSelectValue = event => {
+        this.setState({
+          selectedValue: event.target.value
+        });
+      };
+    
+      handleFormSubmit = formSubmitEvent => 
+      {
+        formSubmitEvent.preventDefault();
+        for (const checkbox of this.selectedCheckboxes) {
+          console.log(checkbox, 'is selected.');
+        }
+        // event.preventDefault();
+        console.log("You have submitted:", this.state.selectedValue);
+      };
+
     render()
     {
         return (
             <div className="content">
-                <div className="container">
-                    <section className="section 1">
-                        <form className="form" id="addItemForm">
-                            <input
-                                type="text"
-                                className="input"
-                                id="addInput"
-                                placeholder="Search your loo..."
-                            />
-                            <button className="button is-info" onClick={this.addItem}>
-                                Search
-                            </button>
-                        </form>
-                    </section>
-    
-                    <section className="section 2">
-                        <ul>
-                            {this.state.list.map(item => (
-                                <li key={item}>{item}</li>
-                            ))}
-                        </ul>
-                    </section>
+                <form onSubmit={this.handleFormSubmit}>
+                <div className="search">
+                    <input
+                        type="text"
+                        className="input"
+                        id="addInput"
+                        placeholder="Search your loo..."
+                    />
+                    <button className="button is-info" onClick={this.addItem}>Search</button>
+                </div>
+                
+                <div className="hours">
+                    <button>24 Hours</button>
+                    <button>Open Now</button>
+                    <button>Closed</button>
+                </div>
+                
+                <div className="gender">
+                    <div className="row">
+                    <form onSubmit={this.handleFormSubmit}>                        
+                        {this.createCheckboxes()}
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </form>
+                    </div>
                 </div>
 
-                <div className="container">
+                <div className="rating">
                     <div className="row">
-                    <div className="col-sm-12">
-                        <form onSubmit={this.handleFormSubmit}>
-                        {this.createCheckboxes()}
-                        <button className="btn btn-default" type="submit">Save</button>
-                        </form>
-                    </div>
+                        <div className="form-group">
+                            <select
+                            value={this.state.selectedValue}
+                            onChange={this.handleSelectValue}
+                            className="form-control"
+                            id="sortByRating"
+                            >
+                                <option value="sortByRating">Sort by Rating</option>
+                                <option value="1 Star">1 Star</option>
+                                <option value="2 Star">2 Star</option>
+                                <option value="3 Star">3 Star</option>
+                                <option value="4 Star">4 Star</option>
+                                <option value="5 Star">5 Star</option>
+                            </select>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                        {/* <button type="submit" className="btn btn-primary" disabled={this.state.selectedValue === "sortByRating"}>Submit</button> */}
                     </div>
                 </div>
-            
+                </form>
             </div>
         )
     }
