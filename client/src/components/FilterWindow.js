@@ -1,12 +1,4 @@
 import React from 'react'
-import Checkbox from "./Checkbox.js"
-import './FilterWindow.css'
-
-const items = [
-    'Male',
-    'Female',
-    'Other',
-];
 
 class FilterWindow extends React.Component
 {
@@ -15,100 +7,104 @@ class FilterWindow extends React.Component
       super(props);
   }
 
-  componentDidMount = () => {
-      this.selectedCheckboxes = new Set();
-    }
-
-  toggleCheckbox = label => {
-    if (this.selectedCheckboxes.has(label)) {
-      this.selectedCheckboxes.delete(label);
-    } else {
-      this.selectedCheckboxes.add(label);
-    }
-  }
-
-  handleFormSubmit = formSubmitEvent => {
-    formSubmitEvent.preventDefault();
-
-    for (const checkbox of this.selectedCheckboxes) {
-      console.log(checkbox, 'is selected.');
-    }
-  }
-
-  createCheckbox = label => (
-    <Checkbox
-            label={label}
-            handleCheckboxChange={this.toggleCheckbox}
-            key={label}
-        />
-  )
-
-  createCheckboxes = () => (
-    items.map(this.createCheckbox)
-  )
-
-  state = {
-    selectedValue: "sortByRating"
-  };
-
-  handleSelectValue = event => 
-  {
-    this.setState({
-      selectedValue: event.target.value
-    });
-  };
-
-  handleChange(e)
+  // Search bar
+  handleChangeSearchBar(e)
   {
     console.log(e.target.value)
   }
 
-  onSubmit(e)
+  onSubmitSearchBar(e)
   {
     e.preventDefault()
   }
 
-  
+  // Drop down
+  state = { selectedValue: "sortByRating" };
+
+  handleSelectValue = event => 
+  {
+    this.setState
+    ({
+      selectedValue: event.target.value
+    });
+  };
+
+// Checkboxes
+  handleInputChange(event) 
+  {
+    const target = event.target;
+    const newLocal = 'male';
+    if(target.name === "male")
+    {
+      console.log(target.checked + " male")
+    }
+    if(target.name === "female")
+    {
+      console.log(target.checked + " female")
+    }
+    if(target.name === "other")
+    {
+      console.log(target.checked + " other")
+    }
+  };
+
   render()
   {
     return (
-      <div className="sidenav">
-        <form onSubmit={e => this.onSubmit(e)}>
-          <div className="container">
-            <input
-              type="search-bar"
-              className="input"
-              id="addInput"
-              placeholder="Search your loo..."
-              onChange={e => this.handleChange(e)}
-            />
-            <button submit="submit">Search</button>
-          </div>
-          </form>
-
-          <div className="check-boxes">
-            <div className="col-sm-12">
-              {this.createCheckboxes()}
-            </div>
-          </div>
-
-          <div className="container">
-            <div className="container">
-              <select
-              value={this.state.selectedValue}
-              onChange={this.handleSelectValue}
-              id="sortByRating"
-              >
-                <option value="sortByRating">Sort by Rating</option>
-                <option value="1 Star">1 Star</option>
-                <option value="2 Star">2 Star</option>
-                <option value="3 Star">3 Star</option>
-                <option value="4 Star">4 Star</option>
-                <option value="5 Star">5 Star</option>
-              </select>
-            </div>
-          </div>
+      <div className="sidebar-navigation">
+        
+        <div className="search-bar">
+        <form onSubmit={e => this.onSubmitSearchBar(e)}>
+          <input
+            type="search-bar"
+            className="input"
+            id="addInput"
+            placeholder="Search your loo..."
+            onChange={e => this.handleChangeSearchBar(e)}
+          />
+          <button submit="submit">Search</button>
+        </form>
+        </div>
+      
+      <div className="checkboxes">
+      <form>
+        Male
+        <input
+          name="male"
+          type="checkbox"
+          checked={this.state.male}
+          onChange={this.handleInputChange} />
+        Female
+        <input
+          name="female"
+          type="checkbox"
+          checked={this.state.male}
+          onChange={this.handleInputChange} />
+        Other
+        <input
+          name="other"
+          type="checkbox"
+          checked={this.state.male}
+          onChange={this.handleInputChange} />
+      </form>
+      </div>
+      
+      <div className="drop-down">
+          <select
+          value = { this.state.selectedValue }
+          onChange = { this.handleSelectValue }
+          id="sortByRating"
+          >
+            <option value="sortByRating">Sort by Rating</option>
+            <option value="1 Star">1 Star</option>
+            <option value="2 Star">2 Star</option>
+            <option value="3 Star">3 Star</option>
+            <option value="4 Star">4 Star</option>
+            <option value="5 Star">5 Star</option>
+          </select>
           <button type="button">Apply Filters</button>
+        </div>
+
       </div>
     )
   }
