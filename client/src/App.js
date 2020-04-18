@@ -1,5 +1,8 @@
+
 import React, {Component } from 'react';
 import Navbar from './components/Navbar';
+  import MapContainer from './components/MapContainer'
+
 import GlobalStyle from './styles/Global';
 import './App.css';
 
@@ -27,6 +30,7 @@ class App extends Component {
         handleNavbar={this.handleNavbar}
         />
         <GlobalStyle />
+      <MapContainer />
       </>
     )
   }
