@@ -1,0 +1,18 @@
+#navmenu-outer {
+    height: 24px;
+}
+
+.table {
+    display: table;
+    margin: 0 auto;
+}
+
+ul#horizontal-list {
+    min-width: 696px;
+    list-style: none;
+    padding-top: 5px;
+}
+
+ul#horizontal-list li {
+    display: inline;
+}
