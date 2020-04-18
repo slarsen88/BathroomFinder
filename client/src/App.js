@@ -1,11 +1,8 @@
 import React from 'react'
+import MapContainer from './components/MapContainer'
 import './App.css'
 
 function App() {
-  return (
-    <div className='App'>
-      <h1>hello world</h1>
-    </div>
-  )
+  return <MapContainer />
 }
 export default App
