@@ -1,24 +1,24 @@
 import React from 'react'
-import styled from "styled-components";
-import { useSpring, animated, config } from "react-spring";
+import styled from 'styled-components'
+import { useSpring, animated, config } from 'react-spring'
 
-import Brand from "./Brand";
-import PoopMenu from "./PoopMenu";
-import CollapseMenu from "./CollapseMenu";
+import Brand from './Brand'
+import PoopMenu from './PoopMenu'
+import CollapseMenu from './CollapseMenu'
 // import '../App.css'
 
 const Navbar = (props) => {
   const barAnimation = useSpring({
     from: { transform: 'translate3d(0, -10rem, 0)' },
     transform: 'translate3d(0, 0, 0)',
-  });
+  })
 
   const linkAnimation = useSpring({
     from: { transform: 'translate3d(0, 30px, 0)', opacity: 0 },
     to: { transform: 'translate3d(0, 0, 0)', opacity: 1 },
     delay: 800,
     config: config.wobbly,
-  });
+  })
 
   return (
     <>
@@ -26,48 +26,28 @@ const Navbar = (props) => {
         <FlexContainer>
           <Brand />
           <NavLinks style={linkAnimation}>
-            <a href="/">home</a>
-            <a href="/">About</a>
-            <a href="/">top pooprooms</a>
-            <a href="/">top poopers</a>
+            <a href='/'>home</a>
+            <a href='/'>About</a>
+            <a href='/'>top pooprooms</a>
+            <a href='/'>top poopers</a>
           </NavLinks>
           <PoopWrapper>
             <PoopMenu
-              navbarState={props.navbarState} 
+              navbarState={props.navbarState}
               handleNavbar={props.handleNavbar}
             />
           </PoopWrapper>
         </FlexContainer>
       </NavBar>
-      <CollapseMenu 
-        navbarState={props.navbarState} 
+      <CollapseMenu
+        navbarState={props.navbarState}
         handleNavbar={props.handleNavbar}
       />
-   </>
+    </>
   )
 }
-// class NavBar extends Component {
-//     render() {
-//         return (
-//             <div id="navmenu-outer">
-//                 <div class="table">
-//                     <ul id="horizontal-list">
-//                         <li>Home </li>
-//                         <li>About </li>
-//                         <li>FAQ </li>
-//                         <li>Contact </li>
-//                         <li>TOP POOPERS </li>
-//                     </ul>
-//                     <h1>matt is a beautiful person</h1>
-//                     <h2>and so is stu</h2>
-//                 </div>
-//             </div>        
-//         )
-//     }
-// }
 
 export default Navbar
-
 
 const NavBar = styled(animated.nav)`
   position: fixed;
@@ -77,16 +57,16 @@ const NavBar = styled(animated.nav)`
   background: #2d3436;
   z-index: 1;
   font-size: 1.4rem;
-`;
+`
 
 const FlexContainer = styled.div`
   max-width: 120rem;
   display: flex;
   margin: auto;
-  padding: 0 2rem;;
+  padding: 0 2rem;
   justify-content: space-between;
   height: 5rem;
-`;
+`
 
 const NavLinks = styled(animated.ul)`
   justify-self: end;
@@ -112,7 +92,7 @@ const NavLinks = styled(animated.ul)`
       display: none;
     }
   }
-`;
+`
 
 const PoopWrapper = styled.div`
   margin: auto 0;
@@ -120,4 +100,4 @@ const PoopWrapper = styled.div`
   @media (min-width: 769px) {
     display: none;
   }
-`;
+`
