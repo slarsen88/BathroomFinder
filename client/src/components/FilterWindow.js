@@ -51,7 +51,8 @@ class FilterWindow extends React.Component
     selectedValue: "sortByRating"
   };
 
-  handleSelectValue = event => {
+  handleSelectValue = event => 
+  {
     this.setState({
       selectedValue: event.target.value
     });
@@ -59,15 +60,15 @@ class FilterWindow extends React.Component
 
   handleChange(e)
   {
-    console.log("hey betch");
+    console.log(e.target.value)
   }
 
   onSubmit(e)
   {
     e.preventDefault()
-    console.log("hey betch?")
   }
 
+  
   render()
   {
     return (
@@ -79,6 +80,7 @@ class FilterWindow extends React.Component
               className="input"
               id="addInput"
               placeholder="Search your loo..."
+              onChange={e => this.handleChange(e)}
             />
             <button submit="submit">Search</button>
           </div>
@@ -89,7 +91,7 @@ class FilterWindow extends React.Component
               {this.createCheckboxes()}
             </div>
           </div>
-          
+
           <div className="container">
             <div className="container">
               <select
