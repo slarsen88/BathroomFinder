@@ -153,6 +153,8 @@ class MapContainer extends Component {
         <button onClick={this.handleClick}>test</button>
         <Map
           google={this.props.google}
+          disableDefaultUI={true}
+          zoomControl={true}
           zoom={10}
           style={mapStyles}
           initialCenter={{ lat: 47.444, lng: -122.176 }}
