@@ -21,9 +21,9 @@ class MapContainer extends Component {
         lat: 47.4985562,
         lng: -122.1481419633,
         amenities: {
-          ADA: false,
-          NeedleDispenser: false,
-          BabyChanger: true,
+          ADA_accessible: false,
+          sharps_disposal: false,
+          baby_changer: true,
         },
       },
       {
@@ -33,9 +33,9 @@ class MapContainer extends Component {
         lat: 47.359423,
         lng: -122.021071,
         amenities: {
-          ADA: true,
-          NeedleDispenser: true,
-          BabyChanger: true,
+          ADA_accessible: true,
+          sharps_disposal: true,
+          baby_changer: true,
         },
       },
       {
@@ -45,9 +45,9 @@ class MapContainer extends Component {
         lat: 47.2052192652,
         lng: -121.988426208,
         amenities: {
-          ADA: false,
-          NeedleDispenser: false,
-          BabyChanger: false,
+          ADA_accessible: false,
+          sharps_disposal: false,
+          baby_changer: false,
         },
       },
       {
@@ -57,9 +57,9 @@ class MapContainer extends Component {
         lat: 47.6307081,
         lng: -122.1434325,
         amenities: {
-          ADA: false,
-          NeedleDispenser: true,
-          BabyChanger: false,
+          ADA_accessible: false,
+          sharps_disposal: true,
+          baby_changer: false,
         },
       },
       {
@@ -69,9 +69,9 @@ class MapContainer extends Component {
         lat: 47.308448,
         lng: -122.21401212,
         amenities: {
-          ADA: false,
-          NeedleDispenser: true,
-          BabyChanger: true,
+          ADA_accessible: false,
+          sharps_disposal: true,
+          baby_changer: true,
         },
       },
       {
@@ -81,9 +81,9 @@ class MapContainer extends Component {
         lat: 47.5524695,
         lng: -122.0425047,
         amenities: {
-          ADA: true,
-          NeedleDispenser: true,
-          BabyChanger: true,
+          ADA_accessible: true,
+          sharps_disposal: true,
+          baby_changer: true,
         },
       },
     ],
@@ -136,7 +136,7 @@ class MapContainer extends Component {
 
   handleClick = async () => {
     const results = await axios.get(
-      'https://ajizffk6n8.execute-api.us-west-2.amazonaws.com/default/getAllBathrooms',
+      'https://<INSERT_API_HERE>.execute-api.<INSERT_AWS_LOCATION>.amazonaws.com/default/<ROUTE>',
       {
         headers: {
           'Access-Control-Allow-Origin': '*',
