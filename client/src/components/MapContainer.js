@@ -150,7 +150,7 @@ class MapContainer extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleClick}>test</button>
+        {/* <button onClick={this.handleClick}>test</button> */}
         <Map
           google={this.props.google}
           disableDefaultUI={true}
