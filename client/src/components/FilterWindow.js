@@ -1,4 +1,5 @@
 import React from 'react'
+import '../App.css'
 
 class FilterWindow extends React.Component
 {
@@ -123,13 +124,14 @@ class FilterWindow extends React.Component
             type="search-bar"
             className="input"
             id="addInput"
-            placeholder="Search your loo..."
+            placeholder="Location"
             onChange={e => this.handleSearchBar(e)}
           />
           <button submit="submit">Search</button>
         </form>
         </div>
-      
+        <br></br>
+
       {/* Apply Filters Form */}
       <form onSubmit={e => this.applyFilters(e)}>
 
@@ -141,12 +143,14 @@ class FilterWindow extends React.Component
           type="checkbox"
           checked={this.state.male}
           onChange={(e) => this.handleGenderCheckboxChange(e)} />
+        <br></br>
         Female
         <input
           name="female"
           type="checkbox"
           checked={this.state.male}
           onChange={(e) => this.handleGenderCheckboxChange(e)} />
+        <br></br>
         Other
         <input
           name="other"
@@ -154,6 +158,8 @@ class FilterWindow extends React.Component
           checked={this.state.male}
           onChange={(e) => this.handleGenderCheckboxChange(e)} />
       </div>
+      <br></br>
+
 
       {/* Amenities Checkboxes */}
       <div className="amenities-checkboxes">
@@ -163,24 +169,28 @@ class FilterWindow extends React.Component
           type="checkbox"
           checked={this.state.adaAccessible}
           onChange={(e) => this.handleAmenitiesCheckboxes(e)} />
+        <br></br>
         Feminine Hygiene
           <input
           name="feminineHygiene"
           type="checkbox"
           checked={this.state.feminineHygiene}
           onChange={(e) => this.handleAmenitiesCheckboxes(e)} />
+        <br></br>
         Door Code
         <input
           name="doorCode"
           type="checkbox"
           checked={this.state.doorCode}
           onChange={(e) => this.handleAmenitiesCheckboxes(e)} />
+        <br></br>
         Contraceptives
         <input
           name="contraceptives"
           type="checkbox"
           checked={this.state.contraceptives}
           onChange={(e) => this.handleAmenitiesCheckboxes(e)} />
+        <br></br>
         Family
         <input
           name="family"
@@ -188,6 +198,7 @@ class FilterWindow extends React.Component
           checked={this.state.family}
           onChange={(e) => this.handleAmenitiesCheckboxes(e)} />
       </div>
+      <br></br>
 
 
       {/* Star Ratings Drop Down Menu */}
@@ -205,13 +216,15 @@ class FilterWindow extends React.Component
           <option value="5 Star">5 Star</option>
         </select>
       </div>
+      <br></br>
 
       {/* Apply Filters Button */}
-      <button type="submit">Apply Filters</button>
+      <button type="submit" class="block">Apply Filters</button>
       </form>
       </div>
     )
   }
 }
+
 
 export default FilterWindow
