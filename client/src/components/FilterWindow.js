@@ -107,7 +107,8 @@ class FilterWindow extends React.Component {
               placeholder='Location'
               onChange={(e) => this.handleSearchBar(e)}
             />
-            <button submit='submit'>Search</button>
+            <br></br><br></br>
+            <button submit='submit' class='block'>Search</button>
           </form>
         </div>
         <br></br>
@@ -202,6 +203,7 @@ class FilterWindow extends React.Component {
           {/* Star Ratings Drop Down Menu */}
           <div className='drop-down'>
             <select
+              class='block'
               value={this.state.selectedValue}
               onChange={(e) => this.handleDropDownValue(e)}
               id='sortByRating'
