@@ -25,11 +25,12 @@ const Navbar = (props) => {
       <NavBar style={barAnimation}>
         <FlexContainer>
           <Brand />
+          <Title>Loocator</Title>
           <NavLinks style={linkAnimation}>
-            <a href='/'>home</a>
+            <a href='/'>Home</a>
             <a href='/'>About</a>
-            <a href='/'>top pooprooms</a>
-            <a href='/'>top poopers</a>
+            <a href='/'>Top Pooprooms</a>
+            <a href='/'>Top Poopers</a>
           </NavLinks>
           <PoopWrapper>
             <PoopMenu
@@ -49,6 +50,15 @@ const Navbar = (props) => {
 
 export default Navbar
 
+const Title = styled.div`
+  color: #f2f2f2;
+  font-weight: 1000;
+  font-size: 2.5rem;
+  margin: auto 0;
+  margin-right: auto;
+  padding-left: 20px;
+`
+
 const NavBar = styled(animated.nav)`
   position: fixed;
   width: 100%;
@@ -60,7 +70,6 @@ const NavBar = styled(animated.nav)`
 `
 
 const FlexContainer = styled.div`
-  max-width: 120rem;
   display: flex;
   margin: auto;
   padding: 0 2rem;
@@ -74,8 +83,8 @@ const NavLinks = styled(animated.ul)`
   margin: auto 0;
 
   & a {
+    font-size: 20px;
     color: #dfe6e9;
-    text-transform: uppercase;
     font-weight: 600;
     border-bottom: 1px solid transparent;
     margin: 0 1.5rem;
