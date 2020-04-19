@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 import InfoWindowContent from './InfoWindowContent'
-
+import axios from 'axios'
 import image from '../assets/poop.png'
 
 class MapContainer extends Component {
@@ -134,23 +134,39 @@ class MapContainer extends Component {
     return <InfoWindowContent bathroom={bathroom} />
   }
 
+  handleClick = async () => {
+    const results = await axios.get(
+      'https://ajizffk6n8.execute-api.us-west-2.amazonaws.com/default/getAllBathrooms',
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
+      }
+    )
+    console.log(results)
+  }
+
   render() {
     return (
-      <Map
-        google={this.props.google}
-        zoom={10}
-        style={mapStyles}
-        initialCenter={{ lat: 47.444, lng: -122.176 }}
-        onClick={this.onMapClicked}
-      >
-        {this.displayMarkers()}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
+      <div>
+        <button onClick={this.handleClick}>test</button>
+        <Map
+          google={this.props.google}
+          zoom={10}
+          style={mapStyles}
+          initialCenter={{ lat: 47.444, lng: -122.176 }}
+          onClick={this.onMapClicked}
         >
-          {this.showInfoContent()}
-        </InfoWindow>
-      </Map>
+          {this.displayMarkers()}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            {this.showInfoContent()}
+          </InfoWindow>
+        </Map>
+      </div>
     )
   }
 }
