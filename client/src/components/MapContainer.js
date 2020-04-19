@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 import InfoWindowContent from './InfoWindowContent'
-
+import axios from 'axios'
 import image from '../assets/poop.png'
 
 class MapContainer extends Component {
@@ -21,9 +21,9 @@ class MapContainer extends Component {
         lat: 47.4985562,
         lng: -122.1481419633,
         amenities: {
-          ADA: false,
-          NeedleDispenser: false,
-          BabyChanger: true,
+          ADA_accessible: false,
+          sharps_disposal: false,
+          baby_changer: true,
         },
       },
       {
@@ -33,9 +33,9 @@ class MapContainer extends Component {
         lat: 47.359423,
         lng: -122.021071,
         amenities: {
-          ADA: true,
-          NeedleDispenser: true,
-          BabyChanger: true,
+          ADA_accessible: true,
+          sharps_disposal: true,
+          baby_changer: true,
         },
       },
       {
@@ -45,9 +45,9 @@ class MapContainer extends Component {
         lat: 47.2052192652,
         lng: -121.988426208,
         amenities: {
-          ADA: false,
-          NeedleDispenser: false,
-          BabyChanger: false,
+          ADA_accessible: false,
+          sharps_disposal: false,
+          baby_changer: false,
         },
       },
       {
@@ -57,9 +57,9 @@ class MapContainer extends Component {
         lat: 47.6307081,
         lng: -122.1434325,
         amenities: {
-          ADA: false,
-          NeedleDispenser: true,
-          BabyChanger: false,
+          ADA_accessible: false,
+          sharps_disposal: true,
+          baby_changer: false,
         },
       },
       {
@@ -69,9 +69,9 @@ class MapContainer extends Component {
         lat: 47.308448,
         lng: -122.21401212,
         amenities: {
-          ADA: false,
-          NeedleDispenser: true,
-          BabyChanger: true,
+          ADA_accessible: false,
+          sharps_disposal: true,
+          baby_changer: true,
         },
       },
       {
@@ -81,9 +81,9 @@ class MapContainer extends Component {
         lat: 47.5524695,
         lng: -122.0425047,
         amenities: {
-          ADA: true,
-          NeedleDispenser: true,
-          BabyChanger: true,
+          ADA_accessible: true,
+          sharps_disposal: true,
+          baby_changer: true,
         },
       },
     ],
@@ -134,23 +134,41 @@ class MapContainer extends Component {
     return <InfoWindowContent bathroom={bathroom} />
   }
 
+  handleClick = async () => {
+    const results = await axios.get(
+      'https://<INSERT_API_HERE>.execute-api.<INSERT_AWS_LOCATION>.amazonaws.com/default/<ROUTE>',
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true,
+        },
+      }
+    )
+    console.log(results)
+  }
+
   render() {
     return (
-      <Map
-        google={this.props.google}
-        zoom={10}
-        style={mapStyles}
-        initialCenter={{ lat: 47.444, lng: -122.176 }}
-        onClick={this.onMapClicked}
-      >
-        {this.displayMarkers()}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
+      <div>
+        <button onClick={this.handleClick}>test</button>
+        <Map
+          google={this.props.google}
+          disableDefaultUI={true}
+          zoomControl={true}
+          zoom={10}
+          style={mapStyles}
+          initialCenter={{ lat: 47.444, lng: -122.176 }}
+          onClick={this.onMapClicked}
         >
-          {this.showInfoContent()}
-        </InfoWindow>
-      </Map>
+          {this.displayMarkers()}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            {this.showInfoContent()}
+          </InfoWindow>
+        </Map>
+      </div>
     )
   }
 }
